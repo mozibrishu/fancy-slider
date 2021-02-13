@@ -117,6 +117,16 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
+// Enter key Trigger: Search Box
+document.getElementById("search").addEventListener("keyup", event => {
+  if (event.key === "Enter") searchBtn.click();
+});
+
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+// Enter Key Trigger: Slider Change duration Box
+document.getElementById("duration").addEventListener("keyup", event => {
+  if (event.key === "Enter") sliderBtn.click();
+});
