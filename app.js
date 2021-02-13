@@ -38,13 +38,13 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
+  element.classList.toggle('added');
  
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !')
+    sliders.splice(item,1);
   }
 }
 var timer
@@ -67,7 +67,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  const duration = (document.getElementById('duration').value > 1000) || 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -117,6 +117,16 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
+// Enter key Trigger: Search Box
+document.getElementById("search").addEventListener("keyup", event => {
+  if (event.key === "Enter") searchBtn.click();
+});
+
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+// Enter Key Trigger: Slider Change duration Box
+document.getElementById("duration").addEventListener("keyup", event => {
+  if (event.key === "Enter") sliderBtn.click();
+});
