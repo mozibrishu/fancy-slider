@@ -25,10 +25,12 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
+  toggleSpinner();
 
 }
 
 const getImages = (query) => {
+  toggleSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -39,12 +41,12 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.toggle('added');
- 
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   } else {
-    sliders.splice(item,1);
+    sliders.splice(item, 1);
   }
 }
 var timer
@@ -68,7 +70,7 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   let intervalTime = document.getElementById('duration').value;
-  const duration = (intervalTime > 1000)?intervalTime: 1000;
+  const duration = (intervalTime > 1000) ? intervalTime : 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -131,3 +133,8 @@ sliderBtn.addEventListener('click', function () {
 document.getElementById("duration").addEventListener("keyup", event => {
   if (event.key === "Enter") sliderBtn.click();
 });
+
+const toggleSpinner = () =>{
+  const spinner = document.getElementById("loading-spinner");
+  spinner.classList.toggle("d-none");
+}
