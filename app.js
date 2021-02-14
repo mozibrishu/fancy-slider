@@ -1,11 +1,12 @@
 const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
-const numOfSelected = document.querySelector('.num-selected-image');
+const selectUnselectSection = document.querySelector('.num-selected-image');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
 const imageItems = document.getElementsByClassName('single-img');
+const notFoundWarning = document.getElementById("not-found-warning");
 // selected image 
 let sliders = [];
 
@@ -17,23 +18,34 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
-  imagesArea.style.display = 'block';
-  gallery.innerHTML = '';
-  // show gallery title
-  galleryHeader.style.display = 'flex';
-  numOfSelected.style.display = 'flex';
-  setSelectedImageNum();
-  images.forEach(image => {
-    let div = document.createElement('div');
-    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail single-img" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-    gallery.appendChild(div)
-  })
-  toggleSpinner();
+  if (images.length === 0) {
+    imagesArea.style.display = 'none';
+    notFoundWarning.style.display = 'flex';
 
+  }
+  else {
+    imagesArea.style.display = 'block';
+    notFoundWarning.style.display = 'none';
+    gallery.innerHTML = '';
+    // show gallery title and Select Options
+    galleryHeader.style.display = 'flex';
+    selectUnselectSection.style.display = 'flex';
+    setSelectedImageNum();
+
+    images.forEach(image => {
+      let div = document.createElement('div');
+      div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
+      div.innerHTML = ` <img class="img-fluid img-thumbnail single-img" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+      gallery.appendChild(div)
+    })
+  }
+
+  // Hide spinner
+  toggleSpinner();
 }
 
 const getImages = (query) => {
+  // Show Spinner
   toggleSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())

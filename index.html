@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Image Slider</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,8 @@
         </div>
         <button id="create-slider" class="btn btn-primary px-5">Create slider</button>
       </div>
-
+      
+    <!-- num of Selected Image, Select All, Unselect All -->
       <div class="justify-content-around align-items-center mt-3 num-selected-image mb-2">
         <h4 class="head-title text-center">Selected Image: <span id="num-selected-img"> 10</span></h4>
         <button id="all-selected" class="btn btn-primary px-5">Select All</button>
@@ -50,6 +51,12 @@
 
       </div>
     </section>
+
+    <!-- Warning: No Image Found -->
+    <div id="not-found-warning" class="justify-content-center mt-4 text-danger">
+      <h3>No Image Found</h3>
+    </div>
+
     <!-- slider -->
     <div class="main">
       <section class="mt-5" id="sliders">
