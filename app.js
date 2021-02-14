@@ -77,7 +77,7 @@ const createSlider = () => {
   // For zero and Negative Value, Default Value: 1000ms
   let intervalTime = document.getElementById('duration').value;
   const duration = (intervalTime <= 0) ? 1000 : intervalTime;
-  
+
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -146,15 +146,28 @@ const toggleSpinner = () => {
   spinner.classList.toggle("d-none");
 }
 
-const setSelectedImageNum = ()=>{
-  document.getElementById("num-selected-img").innerText = sliders.length;  
+const setSelectedImageNum = () => {
+  document.getElementById("num-selected-img").innerText = sliders.length;
 }
 
-document.getElementById("clear-selected").addEventListener("click",()=>{
+document.getElementById("clear-selected").addEventListener("click", () => {
   for (let i = 0; i < imageItems.length; i++) {
     const element = imageItems[i];
     element.classList.remove("added");
   }
   sliders.length = 0;
+  setSelectedImageNum();
+})
+
+document.getElementById("all-selected").addEventListener("click", () => {
+  for (let i = 0; i < imageItems.length; i++) {
+    const element = imageItems[i];
+    element.classList.add("added");
+    const imageSrc = element.getAttribute('src');
+    let item = sliders.indexOf(imageSrc);
+    if (item === -1) {
+      sliders.push(imageSrc);
+    }
+  }
   setSelectedImageNum();
 })
