@@ -5,6 +5,7 @@ const numOfSelected = document.querySelector('.num-selected-image');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
+const imageItems = document.getElementsByClassName('single-img');
 // selected image 
 let sliders = [];
 
@@ -25,7 +26,7 @@ const showImages = (images) => {
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img class="img-fluid img-thumbnail single-img" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
   toggleSpinner();
@@ -147,4 +148,14 @@ const toggleSpinner = () => {
 
 const setSelectedImageNum = ()=>{
   document.getElementById("num-selected-img").innerText = sliders.length;  
+  console.log(imageItems);
 }
+
+document.getElementById("clear-selected").addEventListener("click",()=>{
+  for (let i = 0; i < imageItems.length; i++) {
+    const element = imageItems[i];
+    element.classList.remove("added");
+  }
+  setSelectedImageNum();
+  sliders.length = 0;
+})
