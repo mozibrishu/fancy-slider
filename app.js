@@ -1,6 +1,7 @@
 const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
+const numOfSelected = document.querySelector('.num-selected-image');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
@@ -19,6 +20,8 @@ const showImages = (images) => {
   gallery.innerHTML = '';
   // show gallery title
   galleryHeader.style.display = 'flex';
+  numOfSelected.style.display = 'flex';
+  setSelectedImageNum();
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
@@ -48,6 +51,7 @@ const selectItem = (event, img) => {
   } else {
     sliders.splice(item, 1);
   }
+  setSelectedImageNum();
 }
 var timer
 const createSlider = () => {
@@ -139,4 +143,8 @@ document.getElementById("duration").addEventListener("keyup", event => {
 const toggleSpinner = () => {
   const spinner = document.getElementById("loading-spinner");
   spinner.classList.toggle("d-none");
+}
+
+const setSelectedImageNum = ()=>{
+  document.getElementById("num-selected-img").innerText = sliders.length;  
 }

@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.gallery-header {
+.gallery-header , .num-selected-image{
   display: none;
 }
 
