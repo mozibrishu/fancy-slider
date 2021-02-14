@@ -84,11 +84,12 @@ const createSlider = () => {
 
   sliderContainer.appendChild(prevNext)
   document.querySelector('.main').style.display = 'block';
-  // hide image aria
+  // hide image area
   imagesArea.style.display = 'none';
   // For zero and Negative Value, Default Value: 1000ms
   let intervalTime = document.getElementById('duration').value;
   const duration = (intervalTime <= 0) ? 1000 : intervalTime;
+  document.getElementById('duration').value = duration;
 
   sliders.forEach(slide => {
     let item = document.createElement('div')
@@ -155,7 +156,7 @@ document.getElementById("duration").addEventListener("keyup", event => {
 
 const toggleSpinner = () => {
   const spinner = document.getElementById("loading-spinner");
-  spinner.classList.toggle("d-none");
+  spinner.classList.toggle("display-flex");
 }
 
 const setSelectedImageNum = () => {

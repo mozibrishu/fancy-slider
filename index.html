@@ -25,6 +25,13 @@
       </div>
       <button type="button" id="search-btn" class="btn btn-primary mb-2">Search</button>
     </div>
+
+    <!-- Spinner -->
+    <div id="loading-spinner" class="justify-content-center">
+      <div class="spinner-border" role="status">
+      </div>
+    </div>
+
     <section class="images">
       <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
         <h3 class="head-title text-center">Select image for create slider</h3>
@@ -33,18 +40,12 @@
         </div>
         <button id="create-slider" class="btn btn-primary px-5">Create slider</button>
       </div>
-      
-    <!-- num of Selected Image, Select All, Unselect All -->
+
+      <!-- num of Selected Image, Select All, Unselect All -->
       <div class="justify-content-around align-items-center mt-3 num-selected-image mb-2">
         <h4 class="head-title text-center">Selected Image: <span id="num-selected-img"> 10</span></h4>
         <button id="all-selected" class="btn btn-primary px-5">Select All</button>
         <button id="clear-selected" class="btn btn-primary px-5">Unselect All</button>
-      </div>
-
-      <!-- Spinner -->
-      <div id="loading-spinner" class="d-none d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-        </div>
       </div>
 
       <div class="row gallery">
