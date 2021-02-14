@@ -148,7 +148,6 @@ const toggleSpinner = () => {
 
 const setSelectedImageNum = ()=>{
   document.getElementById("num-selected-img").innerText = sliders.length;  
-  console.log(imageItems);
 }
 
 document.getElementById("clear-selected").addEventListener("click",()=>{
@@ -156,6 +155,6 @@ document.getElementById("clear-selected").addEventListener("click",()=>{
     const element = imageItems[i];
     element.classList.remove("added");
   }
-  setSelectedImageNum();
   sliders.length = 0;
+  setSelectedImageNum();
 })
