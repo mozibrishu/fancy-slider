@@ -61,6 +61,7 @@ img {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
     flex-direction: column;
   }
+
   #sliders {
     height: 300px;
     width: 90%;
@@ -71,6 +72,29 @@ img {
 #loading-spinner {
   display: none;
 }
+
 .display-flex {
   display: flex !important;
+}
+
+#headText{
+  font-size: 46px;
+}
+
+
+.text-animation {
+  animation: headText 4s linear infinite;
+}
+
+@keyframes headText {
+
+  0%, 100% {
+    transform: scale(1);
+    color: cyan;
+}
+
+50% {
+    transform: scale(0.999);
+    color: green;
+}
 }
